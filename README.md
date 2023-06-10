@@ -1,5 +1,8 @@
 # vue2
 
+## Followed Youtube video
+https://youtu.be/1GNsWa_EZdw
+
 ## Project setup
 ```
 yarn install
