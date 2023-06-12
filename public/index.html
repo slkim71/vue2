@@ -42,7 +42,7 @@
     </div>
 
     <script>
-        Vue.createApp({
+        let app = Vue.createApp({
             // computed: {
             //     navbarClasses() {
             //         return {
@@ -89,7 +89,17 @@
                     this.theme = theme;
                 }
             }
-        }).mount('body');
+        });
+
+        app.component('page-viewer', );
+
+        app.mount('body');
     </script>
   </body>
 </html>
+
+
+<!-- 1. to create components, we first need to create a variable for our application -->
+<!-- 2. and then we mount the app -->
+<!-- 3. but before we mount the app, we need to create components, and we do so with the method called component-->
+<!-- 4. component argument should be written in String and must be started with lowercase -->
