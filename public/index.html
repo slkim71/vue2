@@ -9,8 +9,9 @@
       <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
+  <!--        :class="[useDarkNavbar ? 'bg-dark' : 'bg-light', 'navbar', 'navbar-expand-lg']"-->
     <nav
-        :class="[useDarkNavbar ? 'bg-dark' : 'bg-light', 'navbar', 'navbar-expand-lg']"
+        :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']"
     >
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
@@ -27,9 +28,10 @@
                 </li>
             </ul>
             <form class="d-flex">
+                <!--                        @click.prevent="useDarkNavbar = !useDarkNavbar"-->
                 <button
-                        class="btn btn-primary"
-                        @click.prevent="useDarkNavbar = !useDarkNavbar"
+                    class="btn btn-primary"
+                    @click.prevent="changeTheme()"
                 >Toggle Navbar</button>
             </form>
         </div>
@@ -41,20 +43,21 @@
 
     <script>
         Vue.createApp({
-            computed: {
-                navbarClasses() {
-                    return {
-                        'navbar-light': !this.useDarkNavbar,
-                        'bg-light': !this.useDarkNavbar,
-                        'navbar-dark': this.useDarkNavbar,
-                        'bg-dark': this.useDarkNavbar,
-                    }
-                }
-            },
+            // computed: {
+            //     navbarClasses() {
+            //         return {
+            //             'navbar-light': !this.useDarkNavbar,
+            //             'bg-light': !this.useDarkNavbar,
+            //             'navbar-dark': this.useDarkNavbar,
+            //             'bg-dark': this.useDarkNavbar,
+            //         }
+            //     }
+            // },
             data() {
                 return {
                     activePage: 0,
-                    useDarkNavbar: false,
+                    theme: 'light',
+                    // useDarkNavbar: false,
                     pages: [
                         {
                             link: {text: 'Home', url: 'index.html'},
@@ -73,6 +76,18 @@
                         },
                     ]
                 };
+            },
+            // use like a function in button(remove complexity), and add method to application. methods is an obejct which changeTheme method will be going in
+            methods: {
+                changeTheme() {
+                    let theme = 'light';
+
+                    if(this.theme == 'light') {
+                        theme = 'dark';
+                    }
+
+                    this.theme = theme;
+                }
             }
         }).mount('body');
     </script>
