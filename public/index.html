@@ -36,10 +36,9 @@
             </form>
         </div>
     </nav>
-    <div id="content" class="container">
-        <h1>{{ pages[activePage].pageTitle }}</h1>
-        <p>{{ pages[activePage].content }}</p>
-    </div>
+    <page-viewer
+            :page="pages[activePage]"
+    ></page-viewer>
 
     <script>
         let app = Vue.createApp({
@@ -91,7 +90,15 @@
             }
         });
 
-        app.component('page-viewer', );
+        app.component('page-viewer', {
+            props: ['page'],
+            template: `
+                <div class="container">
+                    <h1>{{ page.pageTitle }}</h1>
+                    <p>{{ page.content }}</p>
+                </div>
+            `
+        });
 
         app.mount('body');
     </script>
